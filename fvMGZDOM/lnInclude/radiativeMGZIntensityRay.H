@@ -1,0 +1,1 @@
+../fvMGZDOM/radiativeMGZIntensityRay/radiativeMGZIntensityRay.H

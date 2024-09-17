@@ -1,0 +1,8 @@
+SOURCE = \
+fvMGZDOM/fvMGZDOM/fvMGZDOM.C \
+fvMGZDOM/radiativeMGZIntensityRay/radiativeMGZIntensityRay.C \
+fvMGZDOM/blackMGZBodyEmission/blackMGZBodyEmission.C \
+fvMGZDOM/absorptionMGZCoeffs/absorptionMGZCoeffs.C \
+greyMGZDiffusiveRadiationMixedFvPatchScalarField/greyMGZDiffusiveRadiationMixedFvPatchScalarField.C \
+
+# sources
