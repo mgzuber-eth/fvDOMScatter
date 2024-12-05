@@ -1,0 +1,8 @@
+fvDOMScatter/fvDOMScatter.C
+fvDOMScatter/radiativeIntensityRayScatter/radiativeIntensityRayScatter.C
+fvDOMScatter/blackBodyEmissionScatter/blackBodyEmissionScatter.C
+fvDOMScatter/absorptionCoeffsScatter/absorptionCoeffsScatter.C
+greyDiffusiveRadiationMixedFvPatchScalarFieldScatter/greyDiffusiveRadiationMixedFvPatchScalarFieldScatter.C
+
+
+LIB = $(FOAM_USER_LIBBIN)/libfvDOMScatter

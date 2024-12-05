@@ -1,0 +1,21 @@
+EXE_INC = \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(LIB_SRC)/meshTools/lnInclude \
+	-I$(LIB_SRC)/transportModels/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/basic/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/specie/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/solidThermo/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/thermophysicalProperties/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/reactionThermo/lnInclude \
+	-I$(LIB_SRC)/radiationModels/absorptionEmissionModels/absorptionEmissionModel \
+	-I$(LIB_SRC)/radiationModels/radiationModels/radiationModel \
+	-I$(LIB_SRC)/radiationModels/scatterModels/scatterModel \
+	-I$(LIB_SRC)/radiationModels/derivedFvPatchFields/radiationCoupledBase
+
+LIB_LIBS = \
+    -lfiniteVolume \
+    -lmeshTools \
+    -lfluidThermophysicalModels \
+    -lspecie \
+    -lsolidThermo \
+    -lthermophysicalProperties
