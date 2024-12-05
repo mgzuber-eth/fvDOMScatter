@@ -1,0 +1,115 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1906                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+	rho
+	{
+		solver			PBiCGStab;
+		preconditioner	DIC;
+		tolerance		1e-04; 
+		relTol			0.1;
+	}
+	
+	rhoFinal
+	{
+		$rho; 
+		relTol			0;
+	}
+	
+	"(p|p_rgh)"
+	{
+		solver			GAMG; 
+		smoother		GaussSeidel;
+		tolerance		1e-04;
+		relTol			0.01;
+	}
+	
+	"(p|p_rgh)Final"
+	{
+		$p_rgh;
+		relTol			0;
+	}
+	
+	"(U|k|epsilon|R|Yi)" 
+	{
+		solver			PBiCGStab; 
+		preconditioner	DILU;
+		tolerance		1e-04;
+		relTol			0.1;
+	}
+	
+	"(U|k|epsilon|R|Yi)Final"
+	{
+		$U;
+		relTol			0;
+	}
+	
+	h
+	{
+		solver			PBiCGStab;
+		preconditioner	DILU;
+		tolerance		1e-06;
+		relTol			0.1;
+	}
+	
+	hFinal
+	{
+		$h
+		relTol			0;
+	}
+	
+	Ii
+	{
+		solver			GAMG; 
+		tolerance		1e-04;
+		relTol			0;
+		smoother		symGaussSeidel; 
+		cacheAgglomeration	true;
+		nCellsInCoarsestLevel	100;
+		agglomerator	faceAreaPair;
+		mergeLevels		1;
+		maxIter			20;
+		nPreSweeps		0;
+		nPostSweeps		2;
+	}
+}
+
+
+PIMPLE 
+{
+	nNonOrthogonalCorrectors	0;
+	momentumPredictor	yes; 
+	nCorrectors			2; 
+	frozenFlow			yes;
+	pRefCell			0;
+	pRefValue			100000;
+}
+
+relaxationFactors
+{
+	fields
+	{
+		"p."				1.0;
+	}
+	equations
+	{
+		"U."				1.0;
+		".*"				1.0;
+	}
+}
+// ************************************************************************* //

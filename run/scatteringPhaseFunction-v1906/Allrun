@@ -1,0 +1,20 @@
+#!/bin/sh
+cd ${0%/*} || exit 1                        # Run from this directory
+. $WM_PROJECT_DIR/bin/tools/RunFunctions    # Tutorial run functions
+	
+runApplication blockMesh
+
+mv constant/polyMesh constant/gas/.
+
+runApplication decomposePar -allRegions
+
+runParallel $(getApplication) #> log & #as specified in controlDict file
+
+#runApplication $(getApplication) #> log & #as specified in controlDict file
+
+runApplication reconstructPar -allRegions -newTimes
+	
+pwd
+
+#Files in this directory are based off tutorial chtMultiRegionFoam/reverseBurner
+#------------------------------------------------------------------------------
